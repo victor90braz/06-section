@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -7,23 +8,9 @@ use App\Models\User;
 
 Route::get('/', function () {
 
-    $posts = Post::latest();
+    return (new PostController())->index();
 
-    //dd(request('search'));
-
-    if (request('search')) {
-
-        $posts
-            ->where('title', 'like' , '%'. request('search') . '%')
-            ->orWhere('body', 'like' , '%'. request('search') . '%');
-    };
-
-    return view('posts', [
-        'posts' =>   $posts->get(),
-        'categories' => Category::all()
-    ]);
-
-});
+})->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) {
 
@@ -42,7 +29,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
         'categories' => Category::all()
     ]);
 
-});
+})->name('category');
 
 Route::get('authors/{author:username}', function (User $author) {
 
