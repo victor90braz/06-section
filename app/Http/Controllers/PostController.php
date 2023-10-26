@@ -9,6 +9,21 @@ class PostController extends Controller {
 
 
     public function index() {
+        return view('posts', [
+            'posts' =>   $this->getPosts(),
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function show(Post $post) {
+
+        return view('post', [
+            'post' =>  $post,
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function getPosts() {
         $posts = Post::latest();
 
         //dd(request('search'));
@@ -20,17 +35,6 @@ class PostController extends Controller {
                 ->orWhere('body', 'like' , '%'. request('search') . '%');
         };
 
-        return view('posts', [
-            'posts' =>   $posts->get(),
-            'categories' => Category::all()
-        ]);
-    }
-
-    public function show(Post $post) {
-
-        return view('post', [
-            'post' =>  $post,
-            'categories' => Category::all()
-        ]);
+        return $posts->get();
     }
 }
