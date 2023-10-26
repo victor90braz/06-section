@@ -20,9 +20,9 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeFilter($query) {
+    public function scopeFilter($query, array $filters) {
 
-        if (request('search')) {
+        if ($filters['search'] ?? false) {
 
             $query
                 ->where('title', 'like' , '%'. request('search') . '%')
