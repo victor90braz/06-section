@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\User;
 
-Route::get('/', function () {
-
-    return (new PostController())->index();
-
-})->name('home');
+Route::get('/', [PostController::class, 'index'] )->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) {
 
