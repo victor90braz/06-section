@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostController extends Controller {
 
 
-    public function index () {
+    public function index() {
         $posts = Post::latest();
 
         //dd(request('search'));
@@ -24,5 +24,12 @@ class PostController extends Controller {
             'posts' =>   $posts->get(),
             'categories' => Category::all()
         ]);
+    }
+
+    public function show() {
+            return view('post', [
+        'post' =>  Post::latest(),
+        'categories' => Category::all()
+    ]);
     }
 }
