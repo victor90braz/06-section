@@ -3,7 +3,7 @@
 
 ## GitHub Repository
 
--   Find the code and more on GitHub: [06-section Repository](https://github.com/victor90braz/05-section.git)
+-   Find the code and more on GitHub: [06-section Repository](https://github.com/victor90braz/06-section.git)
 
 ## Introduction
 
