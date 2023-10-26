@@ -26,10 +26,11 @@ class PostController extends Controller {
         ]);
     }
 
-    public function show() {
-            return view('post', [
-        'post' =>  Post::latest(),
-        'categories' => Category::all()
-    ]);
+    public function show(Post $post) {
+
+        return view('post', [
+            'post' =>  $post,
+            'categories' => Category::all()
+        ]);
     }
 }
